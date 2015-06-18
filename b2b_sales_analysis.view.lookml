@@ -77,6 +77,9 @@
   - dimension: transaction_type
     sql: ${TABLE}."transaction type"
 
+  
+# Measures #  
+
   - measure: count
     type: count
     drill_fields: [prod_name, accounts.dpm_name, accounts.account_name, accounts.account_id]
