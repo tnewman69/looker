@@ -34,6 +34,10 @@
 
 
 - explore: chargent_transactions
+  joins:
+    - join: opportunities
+      foreign_key: opportunity_id
+
 
 - explore: chargent_transactions_history
 
@@ -65,16 +69,6 @@
 
     - join: contracts
       foreign_key: contract_id
-
-
-- explore: contracts_history_old
-  joins:
-    - join: accounts
-      foreign_key: account_id
-
-    - join: contracts
-      foreign_key: contract_id
-
 
 - explore: dated_conversion_rate
 
@@ -125,25 +119,12 @@
     - join: contacts
       foreign_key: quotes.contact_id
 
-
-- explore: opportunities_history_old
-  joins:
-    - join: quotes
-      foreign_key: quote_id
-
-    - join: campaigns
-      foreign_key: campaign_id
-
-    - join: accounts
-      foreign_key: account_id
-
-    - join: contacts
-      foreign_key: quotes.contact_id
-
-
 - explore: opportunities_migration
 
 - explore: opportunity_line_item
+  joins:
+    - join: opportunities
+      foreign_key: opportunity_id
 
 - explore: opportunity_line_item_history
 
