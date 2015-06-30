@@ -24,5 +24,15 @@
 - explore: opportunity_line_item
 
 - explore: r4e_product_history_tenant
+  joins:
+    - join: mongo_repbiz_tenant_configurations
+      type: left_outer
+      relationship: many_to_one
+      sql_on: ${r4e_product_history_tenant.tenant_id} = ${mongo_repbiz_tenant_configurations.id}
+  
+    - join: date_table
+      type: left_outer
+      relationship: many_to_one
+      sql_on: ${r4e_product_history_tenant."date"} = ${date_table."date"}
 
 - explore: r4e_product_history_location
