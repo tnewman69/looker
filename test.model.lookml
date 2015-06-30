@@ -22,3 +22,7 @@
 - explore: opportunities
 
 - explore: opportunity_line_item
+
+- explore: r4e_product_history_tenant
+
+- explore: r4e_product_history_location
