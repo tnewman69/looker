@@ -11,10 +11,6 @@
     convert_tz: false
     sql: ${TABLE}."date"
 
-  - dimension: locations_count
-    type: int
-    sql: ${TABLE}.locations_count
-
   - dimension: opportunity_owner_id
     sql: ${TABLE}.opportunity_owner_id
 
@@ -31,4 +27,9 @@
   - measure: count
     type: count
     drill_fields: []
+    
+  - measure: locations_count
+    type: int
+    drill_fields: [] 
+
 
