@@ -28,6 +28,7 @@
     sql: ${TABLE}."Line Description"
 
   - dimension: line_item_id
+    primary_key: true
     sql: ${TABLE}."Line Item ID"
 
   - dimension: list_price
@@ -51,7 +52,7 @@
     sql: ${TABLE}.Quantity
 
   - dimension: sales_price
-    sql: ${TABLE}."Sales Price"
+    sql: (${TABLE}."Sales Price"::DECIMAL)
 
   - dimension_group: service
     type: time
@@ -73,12 +74,45 @@
     sql: ${TABLE}."Term (Months)"
 
   - dimension: total_price
-    sql: ${TABLE}."Total Price"
+    value_format: '$#,##0.00'
+    sql: (${TABLE}."Total Price"::DECIMAL)
 
   - dimension: total_price_contract
+    value_format: '$#,##0.00'
     sql: ${TABLE}."Total Price (Contract)"
+  
+  - dimension: mrr
+    value_format: '$#,##0.00'
+    sql: |
+        CASE
+          WHEN ${term_months} <= 1
+          THEN 0
+          WHEN ${term_months} IS NULL
+          THEN 0
+          ELSE ${total_price}/${term_months}
+        END  
+        
+  - dimension: arr
+    value_format: '$#,##0.00'
+    sql: 12*${mrr}
+  
 
   - measure: count
     type: count
     drill_fields: []
+  
+  - measure: sum_of_total_price
+    type: sum
+    value_format: '$#,##0.00'
+    sql: ${total_price}
+    
+  - measure: total_mrr
+    type: sum
+    value_format: '[>=1000000]$0.00,,"M";[>=1000]$0.00,"K";$0.00'
+    sql: ${mrr}
+    
+  - measure: total_arr
+    type: sum
+    value_format: '[>=1000000]$0.00,,"M";[>=1000]$0.00,"K";$0.00'
+    sql: ${arr}  
 
