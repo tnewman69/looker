@@ -1,3 +1,5 @@
+- explore: contracts
+
 - view: contracts
   sql_table_name: salesforce_b2b.contracts
   fields:
@@ -182,8 +184,26 @@
     timeframes: [time, date, week, month]
     sql: ${TABLE}."System Modstamp"
 
-  - dimension: total_contract_value
-    sql: ${TABLE}."Total Contract Value"
+  - dimension: acv
+    type: number
+    sql: ${TABLE}."Total Contract Value"::DECIMAL
+    value_format: '$#,##0'
+    
+  - dimension: mrr
+    type: number
+    sql: ${acv}/12
+    value_format: '$#,##0'
+    
+  - measure: sum_of_mrr
+    type: sum
+    sql: ${mrr}
+    value_format: '$#,##0'  
+    
+  - measure: sum_of_acv
+    type: sum
+    sql: ${acv}
+    value_format: '$#,##0'
+    
 
   - measure: count
     type: count

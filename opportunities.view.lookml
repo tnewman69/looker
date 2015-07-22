@@ -22,7 +22,16 @@
     sql: ${TABLE}."Amount non currency"
 
   - dimension: annual_contract_value
-    sql: ${TABLE}."Annual Contract Value"
+    value_format: '[>=1000000]$0.00,,"M";[>=1000]$0.00,"K";$0.00'
+    sql: (${TABLE}."Annual Contract Value"::DECIMAL)
+    
+#   - dimension: mrr
+#     type: number
+#     sql: ${annual_contract_value}/12
+    
+#   - dimension: arr
+#     type: number
+#     sql: ${mrr}* 12
 
   - dimension: approved_transaction
     sql: ${TABLE}."Approved Transaction"
@@ -316,7 +325,8 @@
     sql: ${TABLE}."Tenant ID"
 
   - dimension: total_contract_value
-    sql: ${TABLE}."Total Contract Value"
+    value_format: '[>=1000000]$0.00,,"M";[>=1000]$0.00,"K";$0.00'
+    sql: (${TABLE}."Total Contract Value"::DECIMAL)
 
   - dimension: total_contract_value_custom
     sql: ${TABLE}."Total Contract Value Custom"
@@ -348,8 +358,26 @@
   - measure: count
     type: count
     drill_fields: detail*
-
-
+    
+  - measure:  sum_of_total_contract_value 
+    type: sum
+    value_format: '[>=1000000]$0.00,,"M";[>=1000]$0.00,"K";$0.00'
+    sql: ${total_contract_value}
+    
+  - measure:  sum_of_annual_contract_values 
+    type: sum
+    value_format: '[>=1000000]$0.00,,"M";[>=1000]$0.00,"K";$0.00'
+    sql: ${annual_contract_value}  
+# 
+#   - measure:  total_mrr
+#     type: sum
+#     value_format: '$#,##0.00'
+#     sql: ${mrr}  
+# 
+#   - measure:  total_arr
+#     type: sum
+#     value_format: '$#,##0.00'
+#     sql: ${arr}  
   # ----- Sets of fields for drilling ------
   sets:
     detail:
