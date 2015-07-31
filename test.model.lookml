@@ -75,6 +75,7 @@
 
 - explore: opportunity_line_item
 
+- explore: googleanalytics_daily_stats
 # - explore: r4e_product_history_tenant
 #   joins:
 #     - join: mongo_repbiz_tenant_configurations
