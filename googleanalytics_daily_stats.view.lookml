@@ -99,4 +99,7 @@
   - measure: count
     type: count
     drill_fields: [id, table_name, account_name]
+  - measure: daily_new_visits
+    type: int
+    drill_fields: [id, table_name, new_visits]
 
