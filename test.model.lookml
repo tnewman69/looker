@@ -57,34 +57,7 @@
         sql_on: ${product.product_id} = ${pricebook_entry.product_id} 
         
 
-# - explore: b2b_sales_analysis
-#   joins:
-#     - join: accounts
-#       type: left_outer
-#       relationship: many_to_one
-#       sql_on: ${b2b_sales_analysis.account_id} = ${accounts.account_id}
-#   
-#     - join: account_facts
-#       type: left_outer
-#       view_label: "Accounts"
-#       relationship: many_to_one
-#       sql_on: ${b2b_sales_analysis.account_id} = ${account_facts.account_id}
-
-
 - explore: opportunities
 
 - explore: opportunity_line_item
 
-# - explore: r4e_product_history_tenant
-#   joins:
-#     - join: mongo_repbiz_tenant_configurations
-#       type: left_outer
-#       relationship: many_to_one
-#       sql_on: ${r4e_product_history_tenant.tenant_id} = ${mongo_repbiz_tenant_configurations.id}
-#   
-#     - join: date_table
-#       type: left_outer
-#       relationship: many_to_one
-#       sql_on: r4e_product_history_tenant."date" = date_table."date"
-# 
-# - explore: r4e_product_history_location
