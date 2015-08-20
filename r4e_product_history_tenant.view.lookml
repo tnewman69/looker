@@ -29,7 +29,7 @@
     drill_fields: []
     
   - measure: locations_count
-    type: int
-    drill_fields: [] 
+    type: sum
+    sql: ${TABLE}.locations_count
 
 

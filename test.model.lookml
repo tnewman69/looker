@@ -61,3 +61,4 @@
 
 - explore: opportunity_line_item
 
+- explore: googleanalytics_daily_stats

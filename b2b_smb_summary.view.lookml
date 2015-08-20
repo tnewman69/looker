@@ -1,5 +1,5 @@
-- view: b2b_sales_analysis
-  sql_table_name: salesforce_b2b.b2b_sales_analysis
+- view: b2b_smb_summary
+  sql_table_name: salesforce_b2b_staging.b2b_smb_summary
   fields:
 
   - dimension: account_id
@@ -15,6 +15,9 @@
   - dimension: amount
     type: number
     sql: ${TABLE}.amount
+
+  - dimension: cancel_date
+    sql: ${TABLE}.cancel_date
 
   - dimension_group: cohort
     type: time
@@ -41,6 +44,9 @@
   - dimension: opp_prod_id
     sql: ${TABLE}.opp_prodID
 
+  - dimension: price_change_date
+    sql: ${TABLE}.price_change_date
+
   - dimension: prod_name
     sql: ${TABLE}.prod_name
 
@@ -49,6 +55,9 @@
 
   - dimension: product_family
     sql: ${TABLE}.product_family
+
+  - dimension: quanity_change_date
+    sql: ${TABLE}.quanity_change_date
 
   - dimension: quantity
     type: number
@@ -68,6 +77,12 @@
 
   - dimension: salesperson
     sql: ${TABLE}.salesperson
+
+  - dimension_group: start
+    type: time
+    timeframes: [date, week, month]
+    convert_tz: false
+    sql: ${TABLE}.start_date
 
   - dimension: tenant_id
     sql: ${TABLE}."tenant id"
