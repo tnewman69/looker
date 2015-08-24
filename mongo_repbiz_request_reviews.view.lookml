@@ -131,7 +131,7 @@
     type: number
     decimals: 2
     value_format: '0.00%'
-    sql: ${click_count}/NULLIF(${delivered_count},0}
+    sql: ${click_count}/NULLIF(${delivered_count},0)
     
   - measure: average_requests_sent_per_location
     type: number
