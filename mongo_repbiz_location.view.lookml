@@ -1,4 +1,4 @@
-- view: mongo_repbiz_location
+- view: location
   sql_table_name: r4e_mongo.mongo_repbiz_location
   fields:
 
@@ -90,6 +90,7 @@
     sql: ${TABLE}.state
 
   - dimension: tenant_id
+    hidden: true
     sql: ${TABLE}.tenant_id
 
   - dimension: web
@@ -101,4 +102,5 @@
   - measure: count
     type: count
     drill_fields: [id, longname, name]
+    
 

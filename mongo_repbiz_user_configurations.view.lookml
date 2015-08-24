@@ -1,4 +1,4 @@
-- view: mongo_repbiz_user_configurations
+- view: user_configurations
   sql_table_name: r4e_mongo.mongo_repbiz_user_configurations
   fields:
 

@@ -1,4 +1,4 @@
-- view: mongo_repbiz_request_reviews
+- view: reviews
   sql_table_name: r4e_mongo.mongo_repbiz_request_reviews
   fields:
 
@@ -54,7 +54,10 @@
 
   - dimension: last_request_review_id
     sql: ${TABLE}.last_request_review_id
-
+    
+  - dimension: e_mail_type
+    sql: case when ${last_request_review_id} is null then 'primary' else 'drip' end
+    
   - dimension: location_address_line1
     sql: ${TABLE}.location_address_line1
 
@@ -102,7 +105,7 @@
     sql: ${TABLE}.updated_date
 
 # Measures #
-  - measure: reviews_count
+  - measure: count
     type: count
     drill_fields: [id, to_name, from_name]
     
@@ -128,7 +131,13 @@
     type: number
     decimals: 2
     value_format: '0.00%'
-    sql: ${click_count}/NULLIF(${delivered_count},0)
+    sql: ${click_count}/NULLIF(${delivered_count},0}
+    
+  - measure: average_requests_sent_per_location
+    type: number
+    decimals: 2
+    sql: ${count}/nullif(${location.count},0)
+
     
     
     
