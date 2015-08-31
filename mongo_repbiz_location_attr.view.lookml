@@ -1,4 +1,4 @@
-- view: mongo_repbiz_location_attr
+- view: location_attr
   sql_table_name: r4e_mongo.mongo_repbiz_location_attr
   fields:
 

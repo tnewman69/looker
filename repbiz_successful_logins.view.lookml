@@ -35,4 +35,8 @@
   - measure: count
     type: count
     drill_fields: [id, user_name]
+    
+  - measure: last_login
+    type: string
+    sql: MAX(to_char(${TABLE}.date,'YYYY-MM-DD HH:MI:SS'))
 
